@@ -2,6 +2,7 @@ import cv2
 from cvzone.HandTrackingModule import HandDetector
 from button import buttonList
 import time
+from pynput.keyboard import Controller
 
 final_text = ""
 
@@ -42,6 +43,7 @@ while True:
                 if click and (time.time() - last_click_time) > cooldown:
                     final_text = click
                     last_click_time = time.time()
+                    Controller().press(key=button.text)
                 
                 
                 cv2.rectangle(frame, (50, 420), (700, 550), (175, 0, 175), cv2.FILLED)

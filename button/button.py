@@ -31,7 +31,7 @@ class Button():
         x, y = self.pos
         w, h = self.size
         
-        if lenght < 30:         
+        if lenght < 30: 
             cv2.rectangle(frame, self.pos, (x+w, y+h), (0, 255, 0), cv2.FILLED)
             cv2.putText(frame, self.text, (x+20, y+65), 
                         cv2.FONT_HERSHEY_PLAIN, 4, (255, 255, 255), 4)
