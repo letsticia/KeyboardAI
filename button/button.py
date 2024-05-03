@@ -8,6 +8,15 @@ class Button():
         
         
     def draw(self, frame):
+        
+        if self.text == "SPACE":
+            self.size = [300, 85]
+            self.pos = [100, 400]
+           
+        if self.text == "DEL":
+            self.size = [200, 85]
+            self.pos = [700, 400]
+  
         x, y = self.pos
         w, h = self.size
         
@@ -36,7 +45,13 @@ class Button():
             cv2.putText(frame, self.text, (x+20, y+65), 
                         cv2.FONT_HERSHEY_PLAIN, 4, (255, 255, 255), 4)
             
-            final_text += self.text
+            if self.text == "SPACE":
+                final_text += " "
+            elif self.text == "DEL":
+                final_text = final_text[:-1]
+            else:
+                final_text += self.text
+                
             return final_text
       
             
@@ -49,7 +64,8 @@ OVER_COLOR = (175, 0, 175)
 
 keys = [["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
         ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";"],
-        ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"]]
+        ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"],
+        ["SPACE", "DEL"]]
 
 for row in range(len(keys)):
     for numkey, key in enumerate(keys[row]):

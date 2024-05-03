@@ -2,7 +2,7 @@ import cv2
 from cvzone.HandTrackingModule import HandDetector
 from button import buttonList
 import time
-from pynput.keyboard import Controller
+from pynput.keyboard import Controller, Key
 
 final_text = ""
 
@@ -43,11 +43,17 @@ while True:
                 if click and (time.time() - last_click_time) > cooldown:
                     final_text = click
                     last_click_time = time.time()
-                    Controller().press(key=button.text)
+                    
+                    if button.text == "SPACE":
+                        Controller().press(key=Key.space)
+                    elif button.text == "DEL":
+                        Controller().press(key=Key.backspace)
+                    else:
+                        Controller().press(key=button.text)
                 
                 
-                cv2.rectangle(frame, (50, 420), (700, 550), (175, 0, 175), cv2.FILLED)
-                cv2.putText(frame, final_text, (68, 525), 
+                cv2.rectangle(frame, (50, 720), (900, 550), (175, 0, 175), cv2.FILLED)
+                cv2.putText(frame, final_text, (68, 670), 
                             cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 255), 4)
     
     if frame is None:
