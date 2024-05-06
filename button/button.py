@@ -15,7 +15,11 @@ class Button():
            
         if self.text == "DEL":
             self.size = [200, 85]
-            self.pos = [700, 400]
+            self.pos = [480, 400]
+        
+        if self.text == "QUIT":
+            self.size = [200, 85]
+            self.pos = [780, 400]
   
         x, y = self.pos
         w, h = self.size
@@ -36,23 +40,20 @@ class Button():
                         cv2.FONT_HERSHEY_PLAIN, 4, TEXT_COLOR, 4)
             return True
     
-    def click(self, lenght, frame, final_text):
+    def click(self, lenght, frame):
         x, y = self.pos
         w, h = self.size
         
-        if lenght < 30: 
-            cv2.rectangle(frame, self.pos, (x+w, y+h), (0, 255, 0), cv2.FILLED)
+        if lenght < 25: 
+            cv2.rectangle(frame, self.pos, (x+w, y+h), CLICK_COLOR, cv2.FILLED)
             cv2.putText(frame, self.text, (x+20, y+65), 
-                        cv2.FONT_HERSHEY_PLAIN, 4, (255, 255, 255), 4)
+                        cv2.FONT_HERSHEY_PLAIN, 4, TEXT_COLOR, 4)
             
-            if self.text == "SPACE":
-                final_text += " "
-            elif self.text == "DEL":
-                final_text = final_text[:-1]
-            else:
-                final_text += self.text
-                
-            return final_text
+            if self.text =="QUIT":
+                cv2.destroyAllWindows()
+                exit()
+            
+            return True
       
             
     
@@ -61,12 +62,15 @@ buttonList = []
 RETANGLE_COLOR = (255, 0, 255)
 TEXT_COLOR = (255, 255, 255)
 OVER_COLOR = (175, 0, 175)
+CLICK_COLOR = (0, 255, 0)
+POS = (100, 100)
+
 
 keys = [["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
         ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";"],
         ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"],
-        ["SPACE", "DEL"]]
+        ["SPACE", "DEL", "QUIT"]]
 
 for row in range(len(keys)):
     for numkey, key in enumerate(keys[row]):
-        buttonList.append(Button([100 + numkey*100, 100 + row*100], key))
+        buttonList.append(Button([100+ numkey*POS[0], 100 + row*POS[1]], key))

@@ -4,8 +4,6 @@ from button import buttonList
 import time
 from pynput.keyboard import Controller, Key
 
-final_text = ""
-
 last_click_time = 0
 cooldown = 0.7
 
@@ -38,10 +36,9 @@ while True:
             
             if over:
                 lenght, _, _ = detector.findDistance(lmList[8][:2], lmList[4][:2], frame)
-                click = button.click(lenght, frame, final_text)
+                click = button.click(lenght, frame)
                 
                 if click and (time.time() - last_click_time) > cooldown:
-                    final_text = click
                     last_click_time = time.time()
                     
                     if button.text == "SPACE":
@@ -50,11 +47,6 @@ while True:
                         Controller().press(key=Key.backspace)
                     else:
                         Controller().press(key=button.text)
-                
-                
-                cv2.rectangle(frame, (50, 720), (900, 550), (175, 0, 175), cv2.FILLED)
-                cv2.putText(frame, final_text, (68, 670), 
-                            cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 255), 4)
     
     if frame is None:
         continue
