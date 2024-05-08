@@ -20,5 +20,4 @@ python main.py
 
 # About the project
 
-This is a virtual keyboard that uses the webcam to detect the user's hand and track the movement of the fingers. The program uses the [MediaPipe](https://mediapipe.readthedocs.io/en/latest/solutions/hands.html) library to detect the hand landmarks and [OpenCV](https://opencv.org/) to process the video feed. The index finger is used like a cursor, making the keys dark. To press a key, the user must
-put the thumb and index tips together. The program will then type the corresponding letter on whatever text field is currently selected.
+This is a virtual keyboard that uses the webcam to detect the user's hand and track the movement of the fingers. The program uses the [MediaPipe](https://mediapipe.readthedocs.io/en/latest/solutions/hands.html) library to detect the hand landmarks and [OpenCV](https://opencv.org/) to process the video feed. The index finger is used like a cursor, making the keys darker when it is on top of them. The user can press a key by closing the thumb and index fingers. The program will then type the corresponding letter on whatever text field is currently selected.
