@@ -51,7 +51,7 @@ while True:
     if frame is None:
         continue
     
-    cv2.imshow('Video', frame)
+    cv2.imshow('Virtual Keyboard', frame)
     cv2.waitKey(1)
     
     
